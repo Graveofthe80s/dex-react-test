@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AuthRoute from "./AuthRoute";
-import "./App.css";
 import Login from "./pages/Login";
 import List from "./pages/List";
 
