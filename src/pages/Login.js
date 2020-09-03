@@ -27,9 +27,25 @@ const Login = (props) => {
     try {
       if (email && password) {
         const user = await Parse.User.logIn(email, password);
-        console.log(user);
-        localStorage.setItem("userIsLogged", true);
-        history.push("/foods");
+        if (user) {
+          localStorage.setItem("userIsLogged", true);
+          history.push("/foods");
+        }
+      }
+    } catch (error) {
+      if (error) {
+        throw new Error(error);
+      }
+    }
+  };
+
+  /** Sign Up method */
+  const signUp = async (e) => {
+    e.preventDefault();
+
+    try {
+      if (email && password) {
+        return Parse.User.signUp(email, password);
       }
     } catch (error) {
       if (error) {
@@ -79,7 +95,11 @@ const Login = (props) => {
             Acessar
           </button>
           <span id="or">ou</span>
-          <button className="signup-btn" type="submit">
+          <button
+            className="signup-btn"
+            type="submit"
+            onClick={(e) => signUp(e)}
+          >
             Cadastrar
           </button>
           <div className="links">
